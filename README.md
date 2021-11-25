@@ -142,3 +142,40 @@ Don't forget to change the `index.js` file and specify the new file in the impor
 ```js
 import "../public/style.scss"
 ```
+
+Extract the css styles from the js file into his own file
+add new node package `mini-css-extract-plugin`
+```console
+npm install mini-css-extract-plugin -D
+```
+
+add new configuration for `webpack.config.js`
+we need to change the `css-loader` to `MiniCssExtractPlugin.loader` and add a new plugin
+```js
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
+
+module.exports = {
+    entry: "./src/index.js",
+    output: {
+        path: path.join(__dirname, "/dist"),
+        filename: "bundle.js"
+    },
+    plugins: [ 
+        new HtmlWebpackPlugin({ template: './public/index.html' }), 
+        new MiniCssExtractPlugin({ filename: 'bundle.css' }) 
+    ],
+    devServer: {
+        port: 5000
+    },
+    module: {
+        rules: [
+            {
+                test: /\.scss$/,
+                use: [{ loader: MiniCssExtractPlugin.loader }, { loader: "css-loader" }, { loader: "sass-loader" }]
+            }
+        ]
+    }
+}
+```
