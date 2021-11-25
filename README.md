@@ -69,3 +69,13 @@ npx webpack-dev-server --mode development
 
 Now we are able to make changes into our files and the server goes to draw the changes
 by default webpack start the dev server into http://localhost:8080/
+
+You can also change the default port that use webpack adding the following config into our `webpack.config.js`
+```js
+module.exports = {
+    ...,
+    devServer: {
+        port: 5000
+    }
+}
+```
