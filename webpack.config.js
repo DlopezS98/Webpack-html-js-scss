@@ -10,5 +10,13 @@ module.exports = {
     plugins: [ new HtmlWebpackPlugin({ template: './public/index.html' })],
     devServer: {
         port: 5000
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+            }
+        ]
     }
 }

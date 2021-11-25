@@ -10,7 +10,7 @@ npm init -y
 create folders and files
 ```console
 mkdir src, public
-ni src/app.js, src/index.js, public/index.html
+ni src/app.js, src/index.js, public/index.html, public/style.css
 ```
 
 Install the webpack dependencies
@@ -78,4 +78,34 @@ module.exports = {
         port: 5000
     }
 }
+```
+
+Now we need to add some styles into our html page for that we need to install two node packages named `style-loader` & `css-loader`
+```console
+npm install style-loader css-loader -D
+```
+Create a new configuration into `webpack.config.js`, in this case we need to setup the loaders for the css styles
+```js
+module.exports = {
+    ...,
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+            }
+        ]
+    }
+}
+```
+
+To start use the css files into webpack we need to setup an import statement into our main js file in this case is `index.js`
+```js
+import { ShowAlert } from "./app";
+// add this import to use the css styles
+// webpack by default read this import and attach them into the html file
+import "../public/style.css"
+
+let button = document.getElementById('btn-alert');
+button.addEventListener("click", ShowAlert);
 ```
