@@ -57,3 +57,15 @@ module.exports = {
     plugins: [ new HtmlWebpackPlugin({ template: './public/index.html' })]
 }
 ```
+
+Add new dependency to use the development server created by webpack to don't restart every time when we need add new changes into our html or js files
+```console
+npm install webpack-dev-server -D
+```
+run de following command...
+```console
+npx webpack-dev-server --mode development
+```
+
+Now we are able to make changes into our files and the server goes to draw the changes
+by default webpack start the dev server into http://localhost:8080/
