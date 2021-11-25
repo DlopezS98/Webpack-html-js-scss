@@ -109,3 +109,36 @@ import "../public/style.css"
 let button = document.getElementById('btn-alert');
 button.addEventListener("click", ShowAlert);
 ```
+Also we can css preprocessors like sass, so let's start setting up the necessary packages
+```console
+npm install sass-loader node-sass -D
+```
+change the config into the `webpack.config.js`
+```js
+module.exports = {
+     module: {
+        rules: [
+            {
+                test: /\.scss$/,
+                use: [{ loader: "style-loader" }, { loader: "css-loader" }, { loader: "sass-loader" }]
+            }
+        ]
+    }
+}
+```
+you can change the extension of the css file that already exists into the `public/style.css` folder to `public/style.scss`
+sass code
+```scss
+body {
+    background-color: #eee;
+    h1 {
+        background-color: #fff;
+        color: crimson;
+    }
+}
+```
+
+Don't forget to change the `index.js` file and specify the new file in the import statement
+```js
+import "../public/style.scss"
+```
