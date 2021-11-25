@@ -22,3 +22,22 @@ Generate a js bundle with webpack from terminal
 ```console
 npx webpack ./src/index.js -o ./src
 ```
+
+Create a new file named `webpack.config.js`
+add the following setup
+```js
+const path = require('path');
+
+module.exports = {
+    entry: "./src/index.js",
+    output: {
+        path: path.join(__dirname, "/build"),
+        filename: "bundle.js"
+    }
+}
+```
+Run again the webpack command but in this case without specfy the main file and the output
+```console
+npx webpack
+```
+You could add an aditional flag to specify in which environment you're woriking. `-p` specifies the production mode or `-d` for development mode.

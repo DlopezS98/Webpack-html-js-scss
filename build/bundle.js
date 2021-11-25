@@ -1,0 +1,1 @@
+(()=>{"use strict";document.getElementById("btn-alert").addEventListener("click",(function(){alert("Hello World!")}))})();
